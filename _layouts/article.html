@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title }} | 1172709344</title>
+    <meta name="description" content="{{ page.description }}" />
+    <link rel="canonical" href="{{ page.canonical | absolute_url }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}" />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+        },
+        svg: { fontCache: "global" },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    ></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-name" href="{{ '/' | relative_url }}">1172709344</a>
+      <span>DevOps / SRE / Agentic DevOps</span>
+    </header>
+
+    <main>
+      <article class="article-shell">
+        <header class="article-header">
+          <p class="article-kicker">{{ page.category }}</p>
+          <h1>{{ page.title }}</h1>
+          <p class="article-summary">{{ page.description }}</p>
+          <div class="article-meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}"
+              >{{ page.date | date: "%Y-%m-%d" }}</time
+            >
+            <span>{{ page.reading_time }} 分钟阅读</span>
+          </div>
+        </header>
+
+        <div class="article-body">{{ content }}</div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span>持续记录可复用的工程判断与排障方法。</span>
+      <a href="{{ '/' | relative_url }}">返回文章列表</a>
+    </footer>
+  </body>
+</html>

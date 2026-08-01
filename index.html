@@ -1,48 +1,51 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>1172709344</title>
-    <style>
-      :root {
-        color-scheme: light;
-        font-family: Georgia, "Times New Roman", serif;
-        color: #1f2933;
-        background: #f7f3ea;
-      }
-
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-      }
-
-      main {
-        width: min(680px, calc(100% - 48px));
-      }
-
-      h1 {
-        margin: 0 0 16px;
-        font-size: clamp(40px, 8vw, 88px);
-        font-weight: 400;
-        line-height: 0.95;
-      }
-
-      p {
-        margin: 0;
-        max-width: 44rem;
-        font-size: 18px;
-        line-height: 1.7;
-        color: #52616b;
-      }
-    </style>
+    <meta
+      name="description"
+      content="DevOps、SRE 与 Agentic DevOps 的工程实践和排障方法。"
+    />
+    <title>1172709344 | DevOps Engineering Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/site.css" />
   </head>
   <body>
-    <main>
-      <h1>1172709344</h1>
-      <p>Personal GitHub Pages site.</p>
+    <header class="site-header">
+      <a class="site-name" href="/">1172709344</a>
+      <span>DevOps / SRE / Agentic DevOps</span>
+    </header>
+
+    <main class="home-shell">
+      <section class="home-intro">
+        <h1>工程判断，来自可复核的证据。</h1>
+        <p>
+          记录云原生交付、可靠性、故障排查与 AI-native DevOps
+          实践中的方法、边界和取舍。
+        </p>
+      </section>
+
+      <section class="article-index" aria-labelledby="articles-heading">
+        <p class="section-label" id="articles-heading">Latest writing</p>
+        <article class="article-row">
+          <time datetime="2026-08-01">2026-08-01</time>
+          <a href="/articles/large-file-upload-direct-memory-oom/">
+            从 CDN 超时到 Java Direct Memory OOM：大文件上传故障的全链路排查方法
+          </a>
+          <span>DevOps / SRE</span>
+        </article>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <span>持续记录可复用的工程判断与排障方法。</span>
+      <span>GitHub Pages</span>
+    </footer>
   </body>
 </html>
