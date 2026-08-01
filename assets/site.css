@@ -264,6 +264,13 @@ a:hover {
   color: inherit;
 }
 
+.article-body mjx-container[display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 .article-body table {
   display: block;
   width: 100%;
