@@ -60,5 +60,25 @@
       <span>持续记录可复用的工程判断与排障方法。</span>
       <a href="{{ '/' | relative_url }}">返回文章列表</a>
     </footer>
+
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+      document
+        .querySelectorAll("pre > code.language-mermaid")
+        .forEach((codeBlock) => {
+          const diagram = document.createElement("pre");
+          diagram.className = "mermaid";
+          diagram.textContent = codeBlock.textContent;
+          codeBlock.parentElement.replaceWith(diagram);
+        });
+
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "strict",
+        theme: "neutral",
+      });
+      await mermaid.run({ querySelector: ".mermaid" });
+    </script>
   </body>
 </html>
