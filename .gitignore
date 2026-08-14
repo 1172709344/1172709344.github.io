@@ -1,5 +1,9 @@
 # wrangler files
 .wrangler
+.jekyll-cache/
+_site/
+node_modules/
+vendor/bundle/
 .dev.vars*
 !.dev.vars.example
 .env*

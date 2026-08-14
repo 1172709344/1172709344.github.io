@@ -3,12 +3,15 @@
   "name": "1172709344pages",
   "compatibility_date": "2026-06-28",
   "observability": {
-    "enabled": true
+    "enabled": true,
+  },
+  "build": {
+    "command": "bundle install && bundle exec jekyll build",
   },
   "assets": {
-    "directory": "."
+    "directory": "./_site",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
   },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+  "compatibility_flags": ["nodejs_compat"],
 }
