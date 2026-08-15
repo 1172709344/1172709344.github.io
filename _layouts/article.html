@@ -53,6 +53,63 @@
         </header>
 
         <div class="article-body">{{ content }}</div>
+
+        {% capture feedback_title %}[文章反馈] {{ page.title }}{% endcapture %}
+        {% capture feedback_body %}文章：{{ page.title }} 链接：{{
+        page.canonical | absolute_url }} 反馈类型：问题 / 补充 / 纠错 / 经验分享
+        你的反馈：{% endcapture %}
+        <aside class="article-engagement" aria-label="交流与社群">
+          <section class="engagement-section feedback-section">
+            <div>
+              <p class="engagement-label">Feedback</p>
+              <h2>继续交流</h2>
+              <p>
+                如果你对文中的判断有不同经验，发现需要补充或纠正的地方，欢迎通过
+                GitHub 提交问题。我会把有价值的问题继续补充到文章中。
+              </p>
+            </div>
+            <a
+              class="engagement-action"
+              href="https://github.com/1172709344/1172709344.github.io/issues/new?title={{ feedback_title | uri_escape }}&amp;body={{ feedback_body | uri_escape }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >提交问题或反馈</a
+            >
+          </section>
+
+          <section class="engagement-section community-section">
+            <div class="community-copy">
+              <p class="engagement-label">Community</p>
+              <h2>加入「DevOps问答」</h2>
+              <p>
+                这里持续分享 DevOps、SRE、平台工程和 Agentic DevOps
+                的实践、排障过程与工程判断。你可以点击链接加入，也可以使用微信扫描二维码。
+              </p>
+              <a
+                class="engagement-action engagement-action-secondary"
+                href="https://t.zsxq.com/9fXOR"
+                target="_blank"
+                rel="noopener noreferrer"
+                >加入知识星球</a
+              >
+              <a
+                class="community-image-link"
+                href="https://t.zsxq.com/9fXOR"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="打开 DevOps问答知识星球"
+              >
+                <img
+                  src="{{ '/assets/images/devops-qa-zsxq.jpg' | relative_url }}"
+                  alt="DevOps问答知识星球二维码"
+                  width="1125"
+                  height="618"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </section>
+        </aside>
       </article>
     </main>
 
@@ -61,6 +118,7 @@
       <a href="{{ '/' | relative_url }}">返回文章列表</a>
     </footer>
 
+    {% include cloudflare-analytics.html %}
     <script type="module">
       import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
 

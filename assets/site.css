@@ -318,6 +318,99 @@ a:hover {
   border-top: 1px solid var(--ink);
 }
 
+.article-engagement {
+  width: min(760px, 100%);
+  margin: 72px auto 0;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.engagement-section {
+  padding: 32px 0;
+  border-top: 1px solid var(--ink);
+}
+
+.engagement-section h2 {
+  margin: 0;
+  font-family: "Source Serif 4", serif;
+  font-size: 30px;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.engagement-section p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.engagement-label {
+  margin: 0 0 10px !important;
+  color: var(--accent-dark) !important;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px !important;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.feedback-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: center;
+}
+
+.engagement-action {
+  display: inline-flex;
+  min-height: 44px;
+  padding: 11px 16px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--accent-dark);
+  border-radius: 4px;
+  background: var(--accent-dark);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.engagement-action:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.engagement-action-secondary {
+  margin-top: 20px;
+  background: transparent;
+  color: var(--accent-dark);
+}
+
+.engagement-action-secondary:hover {
+  background: var(--wash);
+  color: var(--accent);
+}
+
+.community-section {
+  display: block;
+}
+
+.community-image-link {
+  display: block;
+  width: min(100%, 560px);
+  margin-top: 16px;
+  line-height: 0;
+}
+
+.community-image-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
 @media (max-width: 760px) {
   .site-header,
   .site-footer,
@@ -374,6 +467,20 @@ a:hover {
 
   .article-body h3 {
     font-size: 23px;
+  }
+
+  .article-engagement {
+    margin-top: 56px;
+  }
+
+  .feedback-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .engagement-action {
+    width: 100%;
+    white-space: normal;
   }
 
   .site-footer {
