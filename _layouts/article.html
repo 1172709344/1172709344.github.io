@@ -119,6 +119,62 @@
     </footer>
 
     {% include cloudflare-analytics.html %}
+    <script>
+      const copyText = async (text) => {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return;
+        }
+
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.setAttribute("readonly", "");
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.append(textArea);
+        textArea.select();
+        const copied = document.execCommand("copy");
+        textArea.remove();
+
+        if (!copied) {
+          throw new Error("Copy command failed");
+        }
+      };
+
+      document
+        .querySelectorAll(".article-body pre > code:not(.language-mermaid)")
+        .forEach((codeBlock) => {
+          const pre = codeBlock.parentElement;
+          const wrapper = document.createElement("div");
+          const button = document.createElement("button");
+
+          wrapper.className = "code-block";
+          button.className = "code-copy-button";
+          button.type = "button";
+          button.textContent = "复制";
+          button.title = "复制代码";
+          button.setAttribute("aria-label", "复制代码");
+          button.setAttribute("aria-live", "polite");
+
+          pre.parentElement.insertBefore(wrapper, pre);
+          wrapper.append(pre, button);
+
+          button.addEventListener("click", async () => {
+            try {
+              await copyText(codeBlock.textContent);
+              button.textContent = "已复制";
+              button.classList.add("is-copied");
+            } catch {
+              button.textContent = "复制失败";
+            }
+
+            window.setTimeout(() => {
+              button.textContent = "复制";
+              button.classList.remove("is-copied");
+            }, 1600);
+          });
+        });
+    </script>
     <script type="module">
       import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
 
