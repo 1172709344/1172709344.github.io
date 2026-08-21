@@ -185,9 +185,110 @@ a:hover {
   color: var(--muted);
 }
 
+.article-content-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 760px);
+  gap: 56px;
+  justify-content: start;
+}
+
+.article-toc {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  max-height: calc(100vh - 48px);
+  margin-top: 64px;
+  padding: 0 24px 16px 0;
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.article-toc-label {
+  margin: 0 0 14px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.article-toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.article-toc li {
+  position: relative;
+}
+
+.article-toc > nav > ol > li + li {
+  margin-top: 3px;
+}
+
+.article-toc li > ol {
+  margin: 2px 0 6px 7px;
+  padding-left: 16px;
+  border-left: 1px solid #c1c9c5;
+}
+
+.article-toc li > ol > li::before {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: -16px;
+  width: 10px;
+  border-top: 1px solid #c1c9c5;
+}
+
+.article-toc a {
+  display: block;
+  position: relative;
+  padding: 6px 8px 6px 14px;
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.article-toc a::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 2px;
+  width: 5px;
+  height: 5px;
+  border: 1px solid #8b9691;
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.article-toc a:hover {
+  background: var(--wash);
+  color: var(--ink);
+}
+
+.article-toc a[aria-current="location"] {
+  background: #f8eae8;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.article-toc a[aria-current="location"]::before {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.article-toc-level-3 > a {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+}
+
 .article-body {
-  width: min(760px, 100%);
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 64px 0 0;
   font-family: "Source Serif 4", serif;
   font-size: 18px;
@@ -197,6 +298,7 @@ a:hover {
 .article-body h2,
 .article-body h3,
 .article-body h4 {
+  scroll-margin-top: 24px;
   color: var(--ink);
   letter-spacing: 0;
 }
@@ -450,6 +552,33 @@ a:hover {
   border: 1px solid var(--line);
 }
 
+@media (max-width: 840px) {
+  .article-content-layout {
+    display: block;
+  }
+
+  .article-toc {
+    position: static;
+    width: min(760px, 100%);
+    max-height: 360px;
+    margin: 40px auto 0;
+    padding: 20px;
+    border-right: 0;
+    border-top: 3px solid var(--ink);
+    background: var(--wash);
+  }
+
+  .article-toc a::before {
+    background: var(--wash);
+  }
+
+  .article-body {
+    width: min(760px, 100%);
+    margin: 0 auto;
+    padding-top: 48px;
+  }
+}
+
 @media (max-width: 760px) {
   .site-header,
   .site-footer,
@@ -492,6 +621,12 @@ a:hover {
 
   .article-summary {
     font-size: 17px;
+  }
+
+  .article-toc {
+    max-height: 320px;
+    margin-top: 32px;
+    padding: 18px 16px;
   }
 
   .article-body {

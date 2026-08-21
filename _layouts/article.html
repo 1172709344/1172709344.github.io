@@ -52,7 +52,16 @@
           </div>
         </header>
 
-        <div class="article-body">{{ content }}</div>
+        <div class="article-content-layout">
+          <aside class="article-toc" aria-labelledby="article-toc-title" hidden>
+            <p class="article-toc-label" id="article-toc-title">本文目录</p>
+            <nav aria-label="文章目录">
+              <ol></ol>
+            </nav>
+          </aside>
+
+          <div class="article-body">{{ content }}</div>
+        </div>
 
         {% capture feedback_title %}[文章反馈] {{ page.title }}{% endcapture %}
         {% capture feedback_body %}文章：{{ page.title }} 链接：{{
@@ -120,6 +129,78 @@
 
     {% include cloudflare-analytics.html %}
     <script>
+      const articleBody = document.querySelector(".article-body");
+      const articleToc = document.querySelector(".article-toc");
+      const articleHeadings = [...articleBody.querySelectorAll("h2, h3")];
+
+      if (articleHeadings.length > 1) {
+        const tocList = articleToc.querySelector("ol");
+        const tocLinks = new Map();
+        let currentSectionList = tocList;
+
+        articleHeadings.forEach((heading, index) => {
+          if (!heading.id) {
+            heading.id = `section-${index + 1}`;
+          }
+
+          const item = document.createElement("li");
+          const link = document.createElement("a");
+
+          item.className = `article-toc-level-${heading.tagName.slice(1)}`;
+          link.href = `#${encodeURIComponent(heading.id)}`;
+          link.textContent = heading.textContent;
+          item.append(link);
+
+          if (heading.tagName === "H2") {
+            const childList = document.createElement("ol");
+
+            item.append(childList);
+            tocList.append(item);
+            currentSectionList = childList;
+          } else {
+            currentSectionList.append(item);
+          }
+
+          tocLinks.set(heading.id, link);
+        });
+
+        tocList
+          .querySelectorAll("ol:empty")
+          .forEach((emptyList) => emptyList.remove());
+
+        articleToc.hidden = false;
+
+        const setCurrentHeading = (headingId) => {
+          tocLinks.forEach((link, id) => {
+            if (id === headingId) {
+              link.setAttribute("aria-current", "location");
+            } else {
+              link.removeAttribute("aria-current");
+            }
+          });
+        };
+
+        setCurrentHeading(articleHeadings[0].id);
+
+        const headingObserver = new IntersectionObserver(
+          (entries) => {
+            const visibleHeading = entries
+              .filter((entry) => entry.isIntersecting)
+              .sort(
+                (left, right) =>
+                  left.boundingClientRect.top - right.boundingClientRect.top,
+              )[0];
+
+            if (visibleHeading) {
+              setCurrentHeading(visibleHeading.target.id);
+            }
+          },
+          { rootMargin: "0px 0px -70%", threshold: 0 },
+        );
+
+        articleHeadings.forEach((heading) => headingObserver.observe(heading));
+      }
+
       const copyText = async (text) => {
         if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(text);
