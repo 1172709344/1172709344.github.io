@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+set -u
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+    echo "ERROR: gitleaks is required before committing. Install it and retry." >&2
+    exit 1
+fi
+
+echo "Running Gitleaks against staged changes..."
+gitleaks git --staged --redact=100 --no-banner .
+status=$?
+
+if [ "$status" -ne 0 ]; then
+    echo "ERROR: commit blocked because Gitleaks failed or detected sensitive data." >&2
+fi
+
+exit "$status"
